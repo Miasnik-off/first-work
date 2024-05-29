@@ -1,0 +1,14 @@
+life_data = pd.read_csv('https://www.ons.gov.uk/file?uri=%2Fpeoplepopulationandcommunity%2Fhealthandsocialcare%2Fhealthandlifeexpectancies%2Fdatasets%2Flifeexpectancycalculator%2F2019-06-07%2Flifeexpectancycalculatordata%2Fperiodandcohortlifeexpectancydata%2Fperiodandcohortlifeexpectancydata.csv')
+
+# Filter the data for male life expectancy
+male_data = life_data[life_data['Gender'] == 'Male']
+
+# Create the life table for males
+lx_male = []
+mx_male = []
+qx_male = []
+
+for i in range(0, 101):
+    lx_male.append(int(male_data[male_data['Age'] == i]['Number of persons surviving (lx)']))
+    mx_male.append(int(male_data[male_data['Age'] == i]['Life expectancy (eₓ)']))
+    qx_male.append(int(male_data[male_data['Age'] == i]['Probability of dying (qₓ)']))
